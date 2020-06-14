@@ -123,11 +123,13 @@ struct thread {
 	bool is_exited;
 
 	bool fork_error;
+    uintptr_t cur_rsp;
 
 #endif
 #ifdef VM
 	/* Table for whole virtual memory owned by thread. */
 	struct supplemental_page_table spt;
+    
 #endif
 
 	/* Owned by thread.c. */

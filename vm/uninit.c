@@ -51,6 +51,10 @@ uninit_initialize (struct page *page, void *kva) {
 	vm_initializer *init = uninit->init;
 	void *aux = uninit->aux;
 
+    if(uninit->type == VM_MARKER_0){
+        return true;
+    }
+
 	/* TODO: You may need to fix this function. */
 	return uninit->page_initializer (page, uninit->type, kva) &&
 		(init ? init (page, aux) : true);
@@ -63,6 +67,11 @@ uninit_initialize (struct page *page, void *kva) {
 static void
 uninit_destroy (struct page *page) {
 	struct uninit_page *uninit UNUSED = &page->uninit;
+
+    if(page_get_type(page) == VM_MARKER_0){
+        free(page->frame);
+    }
+    free(page->info);
 	/* TODO: Fill this function.
 	 * TODO: If you don't have anything to do, just return. */
 }

@@ -129,38 +129,55 @@ page_fault (struct intr_frame *f) {
 	   that caused the fault (that's f->rip). */
 
 	fault_addr = (void *) rcr2();
+    //printf("%p\n", fault_addr);
 
 	/* Turn interrupts back on (they were only off so that we could
 	   be assured of reading CR2 before it changed). */
 	intr_enable ();
 
-
+    
 	/* Determine cause. */
 	not_present = (f->error_code & PF_P) == 0;
-    if (not_present){
+/*    if (not_present){
         exit(-1);
     }
+*/
 	write = (f->error_code & PF_W) != 0;
 	user = (f->error_code & PF_U) != 0;
-
+/*
     if(write && user){ //for bad-write2 case
         exit(-1);
     }
     if(!write && user){ //for bad-read2 case
         exit(-1);
     }
-
+*/  
+    
+    
 #ifdef VM
 	/* For project 3 and later. */
 	if (vm_try_handle_fault (f, fault_addr, user, write, not_present))
 		return;
 #endif
-
+    /*
+    if (not_present){
+        exit(-1);
+    }
+*/
+/*
+    if(write && user){ //for bad-write2 case
+        exit(-1);
+    }
+    if(!write && user){ //for bad-read2 case
+        exit(-1);
+    }
+    */
 	/* Count page faults. */
 	page_fault_cnt++;
 
 	/* If the fault is true fault, show info and exit. */
-	printf ("Page fault at %p: %s error %s page in %s context.\n",
+	
+    printf ("Page fault at %p: %s error %s page in %s context.\n",
 			fault_addr,
 			not_present ? "not present" : "rights violation",
 			write ? "writing" : "reading",

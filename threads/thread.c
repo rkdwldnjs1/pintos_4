@@ -441,6 +441,7 @@ init_thread (struct thread *t, const char *name, int priority) {
 	t -> is_exited = false;
     t -> parent_id = 0;
 	t -> fork_error = false;
+    t -> cur_rsp = NULL;
 
 	sema_init(&t -> sema_exit, 0);
 	sema_init(&t -> sema_wait, 0);

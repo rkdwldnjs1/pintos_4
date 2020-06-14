@@ -1,16 +1,16 @@
 c[?7l[2J[0mSeaBIOS (version rel-1.11.0-0-g63451fca13-prebuilt.qemu-project.org)
 
 
-iPXE (http://ipxe.org) 00:03.0 C980 PCI2.10 PnP PMM+0FF915A0+0FEF15A0 C980
+iPXE (http://ipxe.org) 00:03.0 C980 PCI2.10 PnP PMM+013915A0+012F15A0 C980
 Press Ctrl-B to configure iPXE (PCI 00:03.0)...                                                                               
 
 
 Booting from Hard Disk..Kernel command line: -q -f put syn-write put child-syn-wrt run syn-write
 0 ~ 9fc00 1
-100000 ~ ffe0000 1
+100000 ~ 13e0000 1
 Pintos booting with: 
 	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
-	ext_mem: 0x100000 ~ 0xffe0000 (Usable: 260,992 kB)
+	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
 Calibrating timer...  104,755,200 loops/s.
 hd0:0: detected 313 sector (156 kB) disk, model "QEMU HARDDISK", serial "QM00001"
 hd0:1: detected 20,160 sector (9 MB) disk, model "QEMU HARDDISK", serial "QM00002"
@@ -36,10 +36,10 @@ child-syn-wrt: exit(0)
 (syn-write) wait for child 1 of 10 returned 0 (expected 0)
 child-syn-wrt: exit(7)
 child-syn-wrt: exit(3)
-child-syn-wrt: exit(6)
+child-syn-wrt: exit(9)
 child-syn-wrt: exit(1)
 (syn-write) wait for child 2 of 10 returned 1 (expected 1)
-child-syn-wrt: exit(9)
+child-syn-wrt: exit(6)
 child-syn-wrt: exit(8)
 child-syn-wrt: exit(4)
 child-syn-wrt: exit(5)
@@ -57,12 +57,12 @@ child-syn-wrt: exit(2)
 (syn-write) end
 syn-write: exit(0)
 Execution of 'syn-write' complete.
-Timer: 136 ticks
-Thread: 19 idle ticks, 69 kernel ticks, 48 user ticks
+Timer: 112 ticks
+Thread: 22 idle ticks, 61 kernel ticks, 30 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 688 reads, 510 writes
 hd1:0: 220 reads, 0 writes
-Console: 2310 characters output
+Console: 2309 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

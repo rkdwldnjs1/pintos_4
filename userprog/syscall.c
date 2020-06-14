@@ -11,6 +11,7 @@
 #include "filesys/filesys.h"
 #include "filesys/file.h"
 #include "userprog/process.h"
+#include "vm/file.h"
 void syscall_entry (void);
 void syscall_handler (struct intr_frame *);
 
@@ -27,7 +28,7 @@ unsigned tell (int);
 int wait (tid_t);
 tid_t fork(const char *, struct intr_frame *);
 int exec(const char *);
-
+void *mmap (void *, size_t , int , int , off_t);
 //static int get_user (const uint8_t *);
 //static int get_user (const uint8_t *);
 
@@ -69,6 +70,8 @@ syscall_handler (struct intr_frame *f) {
     arg[4] = f->R.r10;
     arg[5] = f->R.r8;
     arg[6] = f->R.r9;
+
+    thread_current()->cur_rsp = f->rsp;
     /*
     check_arg(arg[0]);
     printf("syscall: %d\n",*(int *)arg[0]);
@@ -117,8 +120,12 @@ syscall_handler (struct intr_frame *f) {
         case SYS_CLOSE:
             close(arg[1]);
             break;
+        case SYS_MMAP:
+            f->R.rax = mmap(arg[1],arg[2],arg[3],arg[4],arg[5]);
+            break;
+        case SYS_MUNMAP:
+            break;
 
-        
         default :
             thread_exit ();
 
@@ -226,6 +233,10 @@ read (int fd, void *buffer, unsigned size){
     check_arg(buffer);
     check_arg(buffer+size-1);
 
+    struct page *page = spt_find_page(&thread_current() -> spt, buffer);
+    if (!page -> writable) {
+        exit(-1);
+    }
     struct file * _file;
     _file = thread_current() -> files[fd];
 
@@ -357,4 +368,27 @@ tell (int fd){
     check_arg(_file);
 
     return file_tell(_file);
+}
+
+void 
+*mmap (void *addr, size_t length, int writable, int fd, off_t offset){
+    struct file *_file;
+    _file = thread_current()->files[fd];
+
+    bool _filesize = (filesize(fd) == 0);
+    bool _length = (length == 0);
+
+    if ((!is_user_vaddr(addr))||(addr == NULL) || (addr == 0) || (pg_round_down(addr) != addr)){
+        //printf("1\n");
+        return NULL;
+    }
+    if (_filesize || _length){
+        return NULL;
+    }
+    if (fd==0 || fd==1 ||fd==2){
+        PANIC("not mappable");
+        return NULL;
+    }
+
+    return do_mmap(addr, length, writable, _file, offset);
 }

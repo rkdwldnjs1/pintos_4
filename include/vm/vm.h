@@ -28,21 +28,30 @@ enum vm_type {
 #include "vm/anon.h"
 #include "vm/file.h"
 
+#include "lib/kernel/hash.h"
+
 struct page_operations;
 struct thread;
 
-#define VM_TYPE(type) ((type) & 7)
+#define VM_TYPE(type) ((type) & 15)
 
 /* The representation of "page".
  * This is kind of "parent class", which has four "child class"es, which are
  * uninit_page, file_page, anon_page, and page cache (project4).
  * DO NOT REMOVE/MODIFY PREDEFINED MEMBER OF THIS STRUCTURE. */
+
+typedef bool vm_initializer (struct page *, void *aux);
+
 struct page {
 	const struct page_operations *operations;
 	void *va;              /* Address in terms of user space */
 	struct frame *frame;   /* Back reference for frame */
 
 	/* Your implementation */
+    struct hash_elem hash_elem;
+    bool writable;
+    struct info_for_lazy* info;
+    vm_initializer *init;
 
 	/* Per-type data are binded into the union.
 	 * Each function automatically detects the current union */
@@ -73,6 +82,15 @@ struct page_operations {
 	enum vm_type type;
 };
 
+struct info_for_lazy {
+	struct file *file;
+	size_t page_read_bytes;
+	size_t page_zero_bytes;
+    off_t ofs;
+	bool writable;
+};
+
+
 #define swap_in(page, v) (page)->operations->swap_in ((page), v)
 #define swap_out(page) (page)->operations->swap_out (page)
 #define destroy(page) \
@@ -82,6 +100,7 @@ struct page_operations {
  * We don't want to force you to obey any specific design for this struct.
  * All designs up to you for this. */
 struct supplemental_page_table {
+    struct hash pages;
 };
 
 #include "threads/thread.h"
