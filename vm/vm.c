@@ -233,15 +233,16 @@ vm_try_handle_fault (struct intr_frame *f, void *addr,
     if(page == NULL){
         if(user){
             if( (addr <= (rsp) - 8) && (addr > (rsp)-PGSIZE) && (is_user_vaddr(addr)) && limited_size){
+                
                 vm_stack_growth(addr);
-                //f -> rsp = rsp;
+                //f -> rsp = (void *) ((uint8_t *) pg_round_up(addr));
                 return true;
             }
         }
         if(!user){
             if( (addr <= (rsp) - 8) && (addr > (rsp)-PGSIZE) && (is_user_vaddr(addr)) && limited_size && (!write)){
                 vm_stack_growth(addr);
-                //f -> rsp = rsp;
+                //thread_current()->cur_rsp = (void *) ((uint8_t *) pg_round_down(addr));
                 return true;
             }
         }

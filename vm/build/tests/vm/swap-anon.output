@@ -5,8 +5,7 @@ iPXE (http://ipxe.org) 00:03.0 C980 PCI2.10 PnP PMM+009915A0+008F15A0 C980
 Press Ctrl-B to configure iPXE (PCI 00:03.0)...                                                                               
 
 
-Booting from Hard Disk...
-Kernel command line: -q -f put swap-anon run swap-anon
+Booting from Hard Disk..Kernel command line: -q -f put swap-anon run swap-anon
 0 ~ 9fc00 1
 100000 ~ 9e0000 1
 Pintos booting with: 
@@ -35,8 +34,8 @@ r11 0000000000000202 r12 0000800423cf1800 r13 0000800420a0a200 r14 0000800423bf1
 r15 0000010000000000 rflags 00000006
 es: 0010 ds: 0010 cs: 0008 ss: 0010
 Kernel PANIC recursion at ../../userprog/exception.c:97 in kill().
-Timer: 510 ticks
-Thread: 5 idle ticks, 56 kernel ticks, 449 user ticks
+Timer: 508 ticks
+Thread: 5 idle ticks, 55 kernel ticks, 448 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 79 reads, 230 writes
 hd1:0: 101 reads, 0 writes

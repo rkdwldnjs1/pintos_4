@@ -84,13 +84,13 @@ multi-recurse: exit(14)
 (multi-recurse) end 15
 multi-recurse: exit(15)
 Execution of 'multi-recurse' complete.
-Timer: 122 ticks
-Thread: 14 idle ticks, 59 kernel ticks, 49 user ticks
+Timer: 121 ticks
+Thread: 8 idle ticks, 61 kernel ticks, 53 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 803 reads, 248 writes
 hd1:0: 110 reads, 0 writes
 hd1:1: 0 reads, 0 writes
-Console: 2652 characters output
+Console: 2651 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

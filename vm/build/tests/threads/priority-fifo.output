@@ -24,7 +24,7 @@ Executing 'priority-fifo':
 (priority-fifo) end
 Execution of 'priority-fifo' complete.
 Timer: 54 ticks
-Thread: 0 idle ticks, 54 kernel ticks, 0 user ticks
+Thread: 1 idle ticks, 53 kernel ticks, 0 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 9 reads, 18 writes
 hd1:1: 0 reads, 0 writes

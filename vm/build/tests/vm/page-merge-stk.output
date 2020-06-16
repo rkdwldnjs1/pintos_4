@@ -5,8 +5,7 @@ iPXE (http://ipxe.org) 00:03.0 C980 PCI2.10 PnP PMM+013915A0+012F15A0 C980
 Press Ctrl-B to configure iPXE (PCI 00:03.0)...                                                                               
 
 
-Booting from Hard Disk...
-Kernel command line: -q -f put page-merge-stk put child-qsort run page-merge-stk
+Booting from Hard Disk..Kernel command line: -q -f put page-merge-stk put child-qsort run page-merge-stk
 0 ~ 9fc00 1
 100000 ~ 13e0000 1
 Pintos booting with: 
@@ -44,19 +43,18 @@ child-qsort: exit(-1)
 load: child-qsort: open failed
 child-qsort: exit(-1)
 (page-merge-stk) sort chunk 7
-load: child-qsort: open failed
 child-qsort: exit(-1)
 (page-merge-stk) wait for child 0
 (page-merge-stk) wait for child 0: FAILED
 page-merge-stk: exit(1)
 Execution of 'page-merge-stk' complete.
-Timer: 356 ticks
-Thread: 56 idle ticks, 81 kernel ticks, 219 user ticks
+Timer: 341 ticks
+Thread: 55 idle ticks, 79 kernel ticks, 207 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 391 reads, 4666 writes
+hd0:1: 414 reads, 4666 writes
 hd1:0: 218 reads, 0 writes
 hd1:1: 0 reads, 0 writes
-Console: 1743 characters output
+Console: 1712 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...
