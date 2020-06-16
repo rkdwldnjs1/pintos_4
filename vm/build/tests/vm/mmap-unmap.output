@@ -5,8 +5,7 @@ iPXE (http://ipxe.org) 00:03.0 C980 PCI2.10 PnP PMM+013915A0+012F15A0 C980
 Press Ctrl-B to configure iPXE (PCI 00:03.0)...                                                                               
 
 
-Booting from Hard Disk...
-Kernel command line: -q -f put mmap-unmap put sample.txt run mmap-unmap
+Booting from Hard Disk..Kernel command line: -q -f put mmap-unmap put sample.txt run mmap-unmap
 0 ~ 9fc00 1
 100000 ~ 13e0000 1
 Pintos booting with: 
@@ -27,8 +26,7 @@ Executing 'mmap-unmap':
 (mmap-unmap) mmap "sample.txt"
 (mmap-unmap) memory is readable 540884285
 (mmap-unmap) memory is readable 540888381
-(mmap-unmap) unmapped memory is readable (0): FAILED
-mmap-unmap: exit(1)
+mmap-unmap: exit(-1)
 Execution of 'mmap-unmap' complete.
 Timer: 65 ticks
 Thread: 3 idle ticks, 57 kernel ticks, 5 user ticks
@@ -36,7 +34,7 @@ hd0:0: 0 reads, 0 writes
 hd0:1: 120 reads, 250 writes
 hd1:0: 106 reads, 0 writes
 hd1:1: 0 reads, 0 writes
-Console: 1197 characters output
+Console: 1145 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

@@ -376,6 +376,8 @@ void
 process_exit (void) {
 	struct thread *curr = thread_current ();
     
+  
+    supplemental_page_table_kill (&curr->spt);
 
     for(int i=3; i<128; i++){
 		if(curr->files[i] != NULL){
@@ -383,26 +385,6 @@ process_exit (void) {
         }
     }
 
-    //printf("!!\n");
-    /*for (int i =0 ; i<1000000000; i++){
-
-    }*/
-    
-	/* TODO: Your code goes here.
-	 * TODO: Implement process termination message (see
-	 * TODO: project2/process_termination.html).
-	 * TODO: We recommend you to implement process resource cleanup here. */
-
-/*
-    if( curr -> parent_id != 1){
-	    sema_up(&curr -> sema_wait);
-	    sema_down(&curr -> sema_exit);
-    //list_remove(&curr -> child_elem);
-   
-    
-        //process_cleanup ();
-    }*/
-	//printf("1\n");
     sema_up(&curr -> sema_wait);
 	sema_down(&curr -> sema_exit);
     list_remove(&curr -> child_elem);
@@ -417,7 +399,7 @@ process_cleanup (void) {
 	struct thread *curr = thread_current ();
 
 #ifdef VM
-	supplemental_page_table_kill (&curr->spt);
+	//supplemental_page_table_kill (&curr->spt);
 #endif
 
 	uint64_t *pml4;

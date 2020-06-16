@@ -29,8 +29,8 @@ Executing 'create-exists':
 (create-exists) end
 create-exists: exit(0)
 Execution of 'create-exists' complete.
-Timer: 69 ticks
-Thread: 6 idle ticks, 56 kernel ticks, 7 user ticks
+Timer: 70 ticks
+Thread: 8 idle ticks, 56 kernel ticks, 6 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 162 reads, 298 writes
 hd1:0: 101 reads, 0 writes

@@ -53,6 +53,15 @@ struct page {
     struct info_for_lazy* info;
     vm_initializer *init;
 
+    // file_page에 들어가야 될 수도 있는 정보들, do_mmap에서 설정
+	
+	int num_pages;
+	struct file *file_to_write;
+	bool unmapped;
+	off_t offset;
+    void *unmap_addr;
+	size_t byte_to_write; // lazy_load_segment2에서 설정
+
 	/* Per-type data are binded into the union.
 	 * Each function automatically detects the current union */
 	union {

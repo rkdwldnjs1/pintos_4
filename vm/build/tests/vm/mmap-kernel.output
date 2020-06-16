@@ -5,8 +5,7 @@ iPXE (http://ipxe.org) 00:03.0 C980 PCI2.10 PnP PMM+013915A0+012F15A0 C980
 Press Ctrl-B to configure iPXE (PCI 00:03.0)...                                                                               
 
 
-Booting from Hard Disk...
-Kernel command line: -q -f put mmap-kernel put sample.txt run mmap-kernel
+Booting from Hard Disk..Kernel command line: -q -f put mmap-kernel put sample.txt run mmap-kernel
 0 ~ 9fc00 1
 100000 ~ 13e0000 1
 Pintos booting with: 
@@ -27,4 +26,16 @@ Executing 'mmap-kernel':
 (mmap-kernel) try to mmap over kernel 0
 (mmap-kernel) try to mmap over kernel 1
 (mmap-kernel) try to mmap over kernel 2
-TIMEOUT
+(mmap-kernel) end
+mmap-kernel: exit(0)
+Execution of 'mmap-kernel' complete.
+Timer: 65 ticks
+Thread: 3 idle ticks, 58 kernel ticks, 4 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 111 reads, 246 writes
+hd1:0: 104 reads, 0 writes
+hd1:1: 0 reads, 0 writes
+Console: 1175 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...

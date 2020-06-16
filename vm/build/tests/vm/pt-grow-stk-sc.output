@@ -28,7 +28,7 @@ Executing 'pt-grow-stk-sc':
 (pt-grow-stk-sc) read "sample.txt"
 pt-grow-stk-sc: exit(-1)
 Execution of 'pt-grow-stk-sc' complete.
-Timer: 67 ticks
+Timer: 66 ticks
 Thread: 5 idle ticks, 56 kernel ticks, 6 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 120 reads, 252 writes

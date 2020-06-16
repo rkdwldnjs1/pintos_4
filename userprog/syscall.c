@@ -29,6 +29,7 @@ int wait (tid_t);
 tid_t fork(const char *, struct intr_frame *);
 int exec(const char *);
 void *mmap (void *, size_t , int , int , off_t);
+void munmap(void *);
 //static int get_user (const uint8_t *);
 //static int get_user (const uint8_t *);
 
@@ -124,6 +125,7 @@ syscall_handler (struct intr_frame *f) {
             f->R.rax = mmap(arg[1],arg[2],arg[3],arg[4],arg[5]);
             break;
         case SYS_MUNMAP:
+            munmap(arg[1]);
             break;
 
         default :
@@ -389,6 +391,19 @@ void
         PANIC("not mappable");
         return NULL;
     }
+    if(offset % 4096 != 0){
+        return NULL;
+    }
+    
+    if (length > KERN_BASE - USER_STACK){
+        return NULL;
+    }
 
     return do_mmap(addr, length, writable, _file, offset);
+}
+
+void
+munmap(void *addr) {
+
+    do_munmap(addr);
 }

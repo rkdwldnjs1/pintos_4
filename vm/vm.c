@@ -132,8 +132,10 @@ spt_insert_page (struct supplemental_page_table *spt, struct page *page ) {
 
 void
 spt_remove_page (struct supplemental_page_table *spt, struct page *page) {
+    if (hash_delete(&spt -> pages, &page -> hash_elem) == NULL)
+        PANIC("panic while spt_remove_page : fail to hash_delete");
 	vm_dealloc_page (page);
-	return true;
+	//return true;
 }
 
 /* Get the struct frame, that will be evicted. */
@@ -409,6 +411,7 @@ void
 supplemental_page_table_kill (struct supplemental_page_table *spt) {
 	/* TODO: Destroy all the supplemental_page_table hold by thread and
 	 * TODO: writeback all the modified contents to the storage. */
+
     hash_destroy(&spt -> pages, destroy_func);
 
 }

@@ -34,16 +34,18 @@ Executing 'mmap-off':
 (mmap-off) validated.
 (mmap-off) read "large.txt" Page 1
 (mmap-off) validate page 1.
-(mmap-off) validate fail.: FAILED
-mmap-off: exit(1)
+(mmap-off) validated.
+(mmap-off) success
+(mmap-off) end
+mmap-off: exit(0)
 Execution of 'mmap-off' complete.
-Timer: 501 ticks
-Thread: 214 idle ticks, 279 kernel ticks, 9 user ticks
+Timer: 518 ticks
+Thread: 252 idle ticks, 253 kernel ticks, 13 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 172 reads, 15898 writes
+hd0:1: 172 reads, 15906 writes
 hd1:0: 7930 reads, 0 writes
 hd1:1: 0 reads, 0 writes
-Console: 1373 characters output
+Console: 1396 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

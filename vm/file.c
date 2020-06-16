@@ -47,9 +47,28 @@ file_map_swap_out (struct page *page) {
 }
 
 /* Destory the file mapped page. PAGE will be freed by the caller. */
+/* Destory the file mapped page. PAGE will be freed by the caller. */
 static void
 file_map_destroy (struct page *page) {
 	struct file_page *file_page UNUSED = &page->file;
+    struct thread *current = thread_current();
+
+
+        if (pml4_is_dirty(current -> pml4, page -> va)){ // 도대체 dirty bit은 어디서 설정해주지?
+            
+            if (page -> writable){ 
+                
+             
+                file_write_at(page -> file_to_write, page->va, page -> byte_to_write, page -> offset);
+                
+            }
+        }
+
+        file_close(page->file_to_write);
+
+        free(page -> frame);
+        free(page -> info);
+    
 }
 
 static bool
@@ -75,7 +94,7 @@ lazy_load_segment2 (struct page *page, void *aux) {
         memset (frame->kva + info->page_read_bytes, 0, info->page_zero_bytes);
     }
     
-
+    page -> byte_to_write = read_num;
     
     file_close(info->file);
 
@@ -84,10 +103,6 @@ lazy_load_segment2 (struct page *page, void *aux) {
 	/* TODO: This called when the first page fault occurs on address VA. */
 	/* TODO: VA is available when calling this function. */
 }
-
-
-
-
 
 /* Do the mmap */
 void *
@@ -131,11 +146,24 @@ do_mmap (void *addr, size_t length, int writable,
 					writable, lazy_load_segment2, info)) //aux에 page_read_bytes, file, writable, page_zero_bytes passing
 			return NULL;
 
+        // munmap을 할때를 위한 정보를 저장
+        struct page *page = spt_find_page(&thread_current() -> spt, addr);
+        page -> num_pages = num_pages;
+        page -> unmapped = false; //for implicitly unmap
+        page -> offset = offset;
+        page -> unmap_addr = addr_2;
+        struct file *file_to_write = file_reopen(_file);
+        //page -> file_to_write = file_to_write; //이렇게 그냥 넘겨줘도 되나?
+        page -> file_to_write = file_to_write;
+        //printf("%p\n", page -> file_to_write);
+        //do_nothing2();
+
 		/* Advance. */
 		length -= page_read_bytes;
 		
 		addr += PGSIZE;
         offset += PGSIZE;
+
 
 	}
 
@@ -146,4 +174,27 @@ do_mmap (void *addr, size_t length, int writable,
 /* Do the munmap */
 void
 do_munmap (void *addr) {
+    struct supplemental_page_table spt = thread_current() -> spt;
+    struct page *page = spt_find_page(&spt, addr);
+
+    if ((page -> operations) -> type != VM_FILE){
+        PANIC("panic while munmap syscall : try to munmap page which doesn't have type VM_FILE");
+    }
+
+    int num_pages = page -> num_pages;
+
+    for (int i = 0; i < num_pages; i++) {
+        struct page *p = spt_find_page(&spt, addr + PGSIZE * i); // page들은 uninit이거나 file
+        if (p == NULL)
+            PANIC("panic while do_munmap : spt_find_page is NULL");
+
+
+        spt_remove_page(&spt, p); // hash_delete + dealloc_page
+
+
+        // page안을 비우고 page를 free해주고 spt에서 삭제
+        // 이 과정에서 writeback을 해야 할 수도 있음
+    }
+
+
 }

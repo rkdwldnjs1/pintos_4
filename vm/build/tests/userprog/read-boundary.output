@@ -26,8 +26,8 @@ Executing 'read-boundary':
 (read-boundary) end
 read-boundary: exit(0)
 Execution of 'read-boundary' complete.
-Timer: 66 ticks
-Thread: 6 idle ticks, 58 kernel ticks, 2 user ticks
+Timer: 65 ticks
+Thread: 4 idle ticks, 57 kernel ticks, 4 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 120 reads, 252 writes
 hd1:0: 107 reads, 0 writes

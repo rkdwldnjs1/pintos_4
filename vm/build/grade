@@ -1,4 +1,4 @@
-TOTAL TESTING SCORE: 71.4%
+TOTAL TESTING SCORE: 79.8%
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
@@ -10,12 +10,12 @@ tests/threads/Rubric.alarm                     14/ 18   0.8%/  1.0%
 tests/threads/Rubric.priority                   0/ 38   0.0%/  1.0%
 tests/userprog/Rubric.functionality           131/131   8.0%/  8.0%
 tests/userprog/Rubric.robustness               74/ 74   5.0%/  5.0%
-tests/vm/Rubric.functionality                  48/ 84  31.4%/ 55.0%
-tests/vm/Rubric.robustness                     22/ 26  21.2%/ 25.0%
+tests/vm/Rubric.functionality                  55/ 84  36.0%/ 55.0%
+tests/vm/Rubric.robustness                     26/ 26  25.0%/ 25.0%
 tests/filesys/base/Rubric                      30/ 30   5.0%/  5.0%
 tests/vm/cow/Rubric                             0/  1   0.0%/ 25.0%
 --------------------------------------------- --- --- ------ ------
-Total                                                  71.4%/125.0%
+Total                                                  79.8%/125.0%
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
@@ -182,16 +182,16 @@ Functionality of virtual memory subsystem (tests/vm/Rubric.functionality):
 
 	- Test "mmap" system call.
 	     2/ 2 tests/vm/mmap-read
-	  ** 0/ 2 tests/vm/mmap-write
+	     2/ 2 tests/vm/mmap-write
 	     2/ 2 tests/vm/mmap-ro
 	     2/ 2 tests/vm/mmap-shuffle
 	     2/ 2 tests/vm/mmap-twice
-	  ** 0/ 2 tests/vm/mmap-unmap
-	  ** 0/ 1 tests/vm/mmap-exit
+	     2/ 2 tests/vm/mmap-unmap
+	     1/ 1 tests/vm/mmap-exit
 	     3/ 3 tests/vm/mmap-clean
 	     2/ 2 tests/vm/mmap-close
 	     2/ 2 tests/vm/mmap-remove
-	  ** 0/ 2 tests/vm/mmap-off
+	     2/ 2 tests/vm/mmap-off
 
 	- Test memory swapping
 	  ** 0/ 4 tests/vm/swap-anon
@@ -204,8 +204,8 @@ Functionality of virtual memory subsystem (tests/vm/Rubric.functionality):
 	     4/ 4 tests/vm/lazy-file
 
 	- Section summary.
-	     16/ 27 tests passed
-	     48/ 84 points subtotal
+	     20/ 27 tests passed
+	     55/ 84 points subtotal
 
 Robustness of virtual memory subsystem (tests/vm/Rubric.robustness):
 	- Test robustness of page table support.
@@ -231,12 +231,12 @@ Robustness of virtual memory subsystem (tests/vm/Rubric.robustness):
 	     1/ 1 tests/vm/mmap-over-data
 	     1/ 1 tests/vm/mmap-over-stk
 	     1/ 1 tests/vm/mmap-overlap
-	  ** 0/ 1 tests/vm/mmap-bad-off
-	  ** 0/ 3 tests/vm/mmap-kernel
+	     1/ 1 tests/vm/mmap-bad-off
+	     3/ 3 tests/vm/mmap-kernel
 
 	- Section summary.
-	     17/ 19 tests passed
-	     22/ 26 points subtotal
+	     19/ 19 tests passed
+	     26/ 26 points subtotal
 
 Functionality of base file system (tests/filesys/base/Rubric):
 	- Test basic support for small files.
@@ -292,18 +292,21 @@ Acceptable output:
   (alarm-priority) end
 Differences in `diff -u' format:
   (alarm-priority) begin
-+ (alarm-priority) Thread priority 22 woke up.
-+ (alarm-priority) Thread priority 21 woke up.
-  (alarm-priority) Thread priority 30 woke up.
-  (alarm-priority) Thread priority 29 woke up.
-  (alarm-priority) Thread priority 28 woke up.
-  (alarm-priority) Thread priority 27 woke up.
-  (alarm-priority) Thread priority 26 woke up.
+- (alarm-priority) Thread priority 30 woke up.
+- (alarm-priority) Thread priority 29 woke up.
+- (alarm-priority) Thread priority 28 woke up.
+- (alarm-priority) Thread priority 27 woke up.
+- (alarm-priority) Thread priority 26 woke up.
   (alarm-priority) Thread priority 25 woke up.
   (alarm-priority) Thread priority 24 woke up.
   (alarm-priority) Thread priority 23 woke up.
-- (alarm-priority) Thread priority 22 woke up.
-- (alarm-priority) Thread priority 21 woke up.
+  (alarm-priority) Thread priority 22 woke up.
+  (alarm-priority) Thread priority 21 woke up.
++ (alarm-priority) Thread priority 30 woke up.
++ (alarm-priority) Thread priority 29 woke up.
++ (alarm-priority) Thread priority 28 woke up.
++ (alarm-priority) Thread priority 27 woke up.
++ (alarm-priority) Thread priority 26 woke up.
   (alarm-priority) end
 
 OUTPUT FROM tests/threads/alarm-priority:
@@ -329,6 +332,9 @@ Formatting file system...done.
 Boot complete.
 Executing 'alarm-priority':
 (alarm-priority) begin
+(alarm-priority) Thread priority 25 woke up.
+(alarm-priority) Thread priority 24 woke up.
+(alarm-priority) Thread priority 23 woke up.
 (alarm-priority) Thread priority 22 woke up.
 (alarm-priority) Thread priority 21 woke up.
 (alarm-priority) Thread priority 30 woke up.
@@ -336,13 +342,10 @@ Executing 'alarm-priority':
 (alarm-priority) Thread priority 28 woke up.
 (alarm-priority) Thread priority 27 woke up.
 (alarm-priority) Thread priority 26 woke up.
-(alarm-priority) Thread priority 25 woke up.
-(alarm-priority) Thread priority 24 woke up.
-(alarm-priority) Thread priority 23 woke up.
 (alarm-priority) end
 Execution of 'alarm-priority' complete.
-Timer: 556 ticks
-Thread: 0 idle ticks, 556 kernel ticks, 0 user ticks
+Timer: 555 ticks
+Thread: 0 idle ticks, 555 kernel ticks, 0 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 9 reads, 18 writes
 hd1:1: 0 reads, 0 writes
@@ -389,7 +392,7 @@ Booting from Hard Disk..Kernel command line: -q -threads-tests -f run priority-c
 Pintos booting with: 
 	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
 	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
-Calibrating timer...  78,540,800 loops/s.
+Calibrating timer...  104,755,200 loops/s.
 hd0:0: detected 321 sector (160 kB) disk, model "QEMU HARDDISK", serial "QM00001"
 hd0:1: detected 20,160 sector (9 MB) disk, model "QEMU HARDDISK", serial "QM00002"
 hd1:1: detected 8,064 sector (3 MB) disk, model "QEMU HARDDISK", serial "QM00004"
@@ -402,12 +405,12 @@ Executing 'priority-change':
 (priority-change) Thread 2 should have just exited.
 (priority-change) end
 Execution of 'priority-change' complete.
-Timer: 54 ticks
-Thread: 1 idle ticks, 54 kernel ticks, 0 user ticks
+Timer: 53 ticks
+Thread: 0 idle ticks, 54 kernel ticks, 0 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 9 reads, 18 writes
 hd1:1: 0 reads, 0 writes
-Console: 974 characters output
+Console: 975 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...
@@ -698,8 +701,7 @@ iPXE (http://ipxe.org) 00:03.0 C980 PCI2.10 PnP PMM+013915A0+012F15A0 C980
 Press Ctrl-B to configure iPXE (PCI 00:03.0)...                                                                               
 
 
-Booting from Hard Disk...
-Kernel command line: -q -threads-tests -f run priority-condvar
+Booting from Hard Disk..Kernel command line: -q -threads-tests -f run priority-condvar
 0 ~ 9fc00 1
 100000 ~ 13e0000 1
 Pintos booting with: 
@@ -725,8 +727,8 @@ Executing 'priority-condvar':
 (priority-condvar) Signaling...
 (priority-condvar) end
 Execution of 'priority-condvar' complete.
-Timer: 56 ticks
-Thread: 1 idle ticks, 55 kernel ticks, 0 user ticks
+Timer: 55 ticks
+Thread: 0 idle ticks, 55 kernel ticks, 0 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 9 reads, 18 writes
 hd1:1: 0 reads, 0 writes
@@ -775,8 +777,7 @@ iPXE (http://ipxe.org) 00:03.0 C980 PCI2.10 PnP PMM+013915A0+012F15A0 C980
 Press Ctrl-B to configure iPXE (PCI 00:03.0)...                                                                               
 
 
-Booting from Hard Disk...
-Kernel command line: -q -threads-tests -f run priority-donate-one
+Booting from Hard Disk..Kernel command line: -q -threads-tests -f run priority-donate-one
 0 ~ 9fc00 1
 100000 ~ 13e0000 1
 Pintos booting with: 
@@ -796,7 +797,7 @@ Executing 'priority-donate-one':
 (priority-donate-one) This should be the last line before finishing this test.
 (priority-donate-one) end
 Execution of 'priority-donate-one' complete.
-Timer: 54 ticks
+Timer: 55 ticks
 Thread: 0 idle ticks, 55 kernel ticks, 0 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 9 reads, 18 writes
@@ -857,7 +858,7 @@ Booting from Hard Disk..Kernel command line: -q -threads-tests -f run priority-d
 Pintos booting with: 
 	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
 	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
-Calibrating timer...  104,755,200 loops/s.
+Calibrating timer...  103,116,800 loops/s.
 hd0:0: detected 321 sector (160 kB) disk, model "QEMU HARDDISK", serial "QM00001"
 hd0:1: detected 20,160 sector (9 MB) disk, model "QEMU HARDDISK", serial "QM00002"
 hd1:1: detected 8,064 sector (3 MB) disk, model "QEMU HARDDISK", serial "QM00004"
@@ -873,8 +874,8 @@ Executing 'priority-donate-multiple':
 (priority-donate-multiple) Main thread should have priority 31.  Actual priority: 31.
 (priority-donate-multiple) end
 Execution of 'priority-donate-multiple' complete.
-Timer: 55 ticks
-Thread: 0 idle ticks, 55 kernel ticks, 0 user ticks
+Timer: 58 ticks
+Thread: 0 idle ticks, 58 kernel ticks, 0 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 9 reads, 18 writes
 hd1:1: 0 reads, 0 writes
@@ -1040,95 +1041,39 @@ Powering off...
 
 DETAILS OF tests/threads/priority-donate-chain FAILURE:
 
-Test output failed to match any acceptable form.
-
-Acceptable output:
-  (priority-donate-chain) begin
-  (priority-donate-chain) main got lock.
-  (priority-donate-chain) main should have priority 3.  Actual priority: 3.
-  (priority-donate-chain) main should have priority 6.  Actual priority: 6.
-  (priority-donate-chain) main should have priority 9.  Actual priority: 9.
-  (priority-donate-chain) main should have priority 12.  Actual priority: 12.
-  (priority-donate-chain) main should have priority 15.  Actual priority: 15.
-  (priority-donate-chain) main should have priority 18.  Actual priority: 18.
-  (priority-donate-chain) main should have priority 21.  Actual priority: 21.
-  (priority-donate-chain) thread 1 got lock
-  (priority-donate-chain) thread 1 should have priority 21. Actual priority: 21
-  (priority-donate-chain) thread 2 got lock
-  (priority-donate-chain) thread 2 should have priority 21. Actual priority: 21
-  (priority-donate-chain) thread 3 got lock
-  (priority-donate-chain) thread 3 should have priority 21. Actual priority: 21
-  (priority-donate-chain) thread 4 got lock
-  (priority-donate-chain) thread 4 should have priority 21. Actual priority: 21
-  (priority-donate-chain) thread 5 got lock
-  (priority-donate-chain) thread 5 should have priority 21. Actual priority: 21
-  (priority-donate-chain) thread 6 got lock
-  (priority-donate-chain) thread 6 should have priority 21. Actual priority: 21
-  (priority-donate-chain) thread 7 got lock
-  (priority-donate-chain) thread 7 should have priority 21. Actual priority: 21
-  (priority-donate-chain) thread 7 finishing with priority 21.
-  (priority-donate-chain) interloper 7 finished.
-  (priority-donate-chain) thread 6 finishing with priority 18.
-  (priority-donate-chain) interloper 6 finished.
-  (priority-donate-chain) thread 5 finishing with priority 15.
-  (priority-donate-chain) interloper 5 finished.
-  (priority-donate-chain) thread 4 finishing with priority 12.
-  (priority-donate-chain) interloper 4 finished.
-  (priority-donate-chain) thread 3 finishing with priority 9.
-  (priority-donate-chain) interloper 3 finished.
-  (priority-donate-chain) thread 2 finishing with priority 6.
-  (priority-donate-chain) interloper 2 finished.
-  (priority-donate-chain) thread 1 finishing with priority 3.
-  (priority-donate-chain) interloper 1 finished.
-  (priority-donate-chain) main finishing with priority 0.
-  (priority-donate-chain) end
-Differences in `diff -u' format:
-  (priority-donate-chain) begin
-  (priority-donate-chain) main got lock.
-- (priority-donate-chain) main should have priority 3.  Actual priority: 3.
-- (priority-donate-chain) main should have priority 6.  Actual priority: 6.
-- (priority-donate-chain) main should have priority 9.  Actual priority: 9.
-- (priority-donate-chain) main should have priority 12.  Actual priority: 12.
-- (priority-donate-chain) main should have priority 15.  Actual priority: 15.
-- (priority-donate-chain) main should have priority 18.  Actual priority: 18.
-- (priority-donate-chain) main should have priority 21.  Actual priority: 21.
-- (priority-donate-chain) thread 1 got lock
-- (priority-donate-chain) thread 1 should have priority 21. Actual priority: 21
-- (priority-donate-chain) thread 2 got lock
-- (priority-donate-chain) thread 2 should have priority 21. Actual priority: 21
-- (priority-donate-chain) thread 3 got lock
-- (priority-donate-chain) thread 3 should have priority 21. Actual priority: 21
-- (priority-donate-chain) thread 4 got lock
-- (priority-donate-chain) thread 4 should have priority 21. Actual priority: 21
-- (priority-donate-chain) thread 5 got lock
-- (priority-donate-chain) thread 5 should have priority 21. Actual priority: 21
-- (priority-donate-chain) thread 6 got lock
-- (priority-donate-chain) thread 6 should have priority 21. Actual priority: 21
-- (priority-donate-chain) thread 7 got lock
-- (priority-donate-chain) thread 7 should have priority 21. Actual priority: 21
-- (priority-donate-chain) thread 7 finishing with priority 21.
-- (priority-donate-chain) interloper 7 finished.
-- (priority-donate-chain) thread 6 finishing with priority 18.
-- (priority-donate-chain) interloper 6 finished.
-- (priority-donate-chain) thread 5 finishing with priority 15.
-- (priority-donate-chain) interloper 5 finished.
-- (priority-donate-chain) thread 4 finishing with priority 12.
-- (priority-donate-chain) interloper 4 finished.
-- (priority-donate-chain) thread 3 finishing with priority 9.
-- (priority-donate-chain) interloper 3 finished.
-- (priority-donate-chain) thread 2 finishing with priority 6.
-- (priority-donate-chain) interloper 2 finished.
-- (priority-donate-chain) thread 1 finishing with priority 3.
-- (priority-donate-chain) interloper 1 finished.
-+ (priority-donate-chain) main should have priority 3.  Actual priority: 0.
-+ (priority-donate-chain) main should have priority 6.  Actual priority: 0.
-+ (priority-donate-chain) main should have priority 9.  Actual priority: 0.
-+ (priority-donate-chain) main should have priority 12.  Actual priority: 0.
-+ (priority-donate-chain) main should have priority 15.  Actual priority: 0.
-+ (priority-donate-chain) main should have priority 18.  Actual priority: 0.
-+ (priority-donate-chain) main should have priority 21.  Actual priority: 0.
-  (priority-donate-chain) main finishing with priority 0.
-  (priority-donate-chain) end
+Kernel panic in run: PANIC at ../../threads/thread.c:283 in thread_current(): assertion `is_thread (t)' failed.
+Call stack: 0x800421769b 0x8004207014 0x8004220288 0x800421c5ea 0x8004208a3d 0x8004208e5b 0x8004219e66 0x800421fe97 0x800421ff21 0x8004220309 0x800421c5ea 0x8004208a3d 0x8004208e5b 0x8004219e66 0x800421fe97 0x800421ff21 0x8004220309 0x800421c5ea 0x8004208a3d 0x8004208e5b 0x8004219e66 0x800421fe97 0x800421ff21 0x8004220309 0x800421c5ea 0x8004208a3d 0x8004208e5b 0x8004209e7b 0x800420fe1e 0x800420736c
+Translation of call stack:
+0x000000800421769b: debug_panic (lib/kernel/debug.c:32)
+0x0000008004207014: thread_current (threads/thread.c:284)
+0x0000008004220288: vm_try_handle_fault (vm/vm.c:216)
+0x000000800421c5ea: page_fault (userprog/exception.c:159)
+0x0000008004208a3d: intr_handler (threads/interrupt.c:352)
+0x0000008004208e5b: intr_entry (threads/intr-stubs.o:?)
+0x0000008004219e66: hash_find (lib/kernel/hash.c:127)
+0x000000800421fe97: page_lookup (vm/vm.c:105)
+0x000000800421ff21: spt_find_page (vm/vm.c:115)
+0x0000008004220309: vm_try_handle_fault (vm/vm.c:232)
+0x000000800421c5ea: page_fault (userprog/exception.c:159)
+0x0000008004208a3d: intr_handler (threads/interrupt.c:352)
+0x0000008004208e5b: intr_entry (threads/intr-stubs.o:?)
+0x0000008004219e66: hash_find (lib/kernel/hash.c:127)
+0x000000800421fe97: page_lookup (vm/vm.c:105)
+0x000000800421ff21: spt_find_page (vm/vm.c:115)
+0x0000008004220309: vm_try_handle_fault (vm/vm.c:232)
+0x000000800421c5ea: page_fault (userprog/exception.c:159)
+0x0000008004208a3d: intr_handler (threads/interrupt.c:352)
+0x0000008004208e5b: intr_entry (threads/intr-stubs.o:?)
+0x0000008004219e66: hash_find (lib/kernel/hash.c:127)
+0x000000800421fe97: page_lookup (vm/vm.c:105)
+0x000000800421ff21: spt_find_page (vm/vm.c:115)
+0x0000008004220309: vm_try_handle_fault (vm/vm.c:232)
+0x000000800421c5ea: page_fault (userprog/exception.c:159)
+0x0000008004208a3d: intr_handler (threads/interrupt.c:352)
+0x0000008004208e5b: intr_entry (threads/intr-stubs.o:?)
+0x0000008004209e7b: lock_acquire (threads/synch.c:189)
+0x000000800420fe1e: donor_thread_func (tests/threads/priority-donate-chain.c:93)
+0x000000800420736c: kernel_thread (threads/thread.c:417)
 
 OUTPUT FROM tests/threads/priority-donate-chain:
 
@@ -1164,15 +1109,698 @@ Executing 'priority-donate-chain':
 (priority-donate-chain) main finishing with priority 0.
 (priority-donate-chain) end
 Execution of 'priority-donate-chain' complete.
-Timer: 56 ticks
-Thread: 1 idle ticks, 55 kernel ticks, 0 user ticks
+Timer: 58 ticks
+Thread: 0 idle ticks, 58 kernel ticks, 0 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 9 reads, 18 writes
 hd1:1: 0 reads, 0 writes
 Console: 1451 characters output
-Keyboard: 0 keys pressed
-Exception: 0 page faults
-Powering off...
+Keyboard: 0 keKernel PANIC at ../../threads/thread.c:283 in thread_current(): assertion `is_thread (t)' failed.
+Call stack: 0x800421769b 0x8004207014 0x8004220288 0x800421c5ea 0x8004208a3d 0x8004208e5b 0x8004219e66 0x800421fe97 0x800421ff21 0x8004220309 0x800421c5ea 0x8004208a3d 0x8004208e5b 0x8004219e66 0x800421fe97 0x800421ff21 0x8004220309 0x800421c5ea 0x8004208a3d 0x8004208e5b 0x8004219e66 0x800421fe97 0x800421ff21 0x8004220309 0x800421c5ea 0x8004208a3d 0x8004208e5b 0x8004209e7b 0x800420fe1e 0x800420736c.
+The `backtrace' program can make call stacks useful.
+Read "Backtraces" in the "Debugging Tools" chapter
+of the Pintos documentation for more information.
+Kernel PANIC recursion at ../../filesys/inode.c:304 in inode_allow_write().
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421f21b
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 0000008004221a76 rdx 000000000000001e
+rsp 00000080042470d0 rbp 00000080042470e0 rsi 000000000000011b rdi cccccccccccccccc
+rip 000000800421f21b r8 0000008004221b0f  r9 00000080042175c0 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000002
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000027
+rsp 0000008004246ec0 rbp 0000008004246ed0 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000030
+rsp 0000008004246cb0 rbp 0000008004246cc0 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000039
+rsp 0000008004246aa0 rbp 0000008004246ab0 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000002
+rsp 0000008004246890 rbp 00000080042468a0 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 000000000000000b
+rsp 0000008004246680 rbp 0000008004246690 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000014
+rsp 0000008004246470 rbp 0000008004246480 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 000000000000001d
+rsp 0000008004246260 rbp 0000008004246270 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000026
+rsp 0000008004246050 rbp 0000008004246060 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 000000000000002f
+rsp 0000008004245e40 rbp 0000008004245e50 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000038
+rsp 0000008004245c30 rbp 0000008004245c40 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000001
+rsp 0000008004245a20 rbp 0000008004245a30 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 000000000000000a
+rsp 0000008004245810 rbp 0000008004245820 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000013
+rsp 0000008004245600 rbp 0000008004245610 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 000000000000001c
+rsp 00000080042453f0 rbp 0000008004245400 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000025
+rsp 00000080042451e0 rbp 00000080042451f0 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 000000000000002e
+rsp 0000008004244fd0 rbp 0000008004244fe0 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000037
+rsp 0000008004244dc0 rbp 0000008004244dd0 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000000
+rsp 0000008004244bb0 rbp 0000008004244bc0 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000009
+rsp 00000080042449a0 rbp 00000080042449b0 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000012
+rsp 0000008004244790 rbp 00000080042447a0 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 000000000000001b
+rsp 0000008004244580 rbp 0000008004244590 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000024
+rsp 0000008004244370 rbp 0000008004244380 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 000000000000002d
+rsp 0000008004244160 rbp 0000008004244170 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000036
+rsp 0000008004243f50 rbp 0000008004243f60 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 000000000000003f
+rsp 0000008004243d40 rbp 0000008004243d50 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000008
+rsp 0000008004243b30 rbp 0000008004243b40 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000011
+rsp 0000008004243920 rbp 0000008004243930 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 000000000000001a
+rsp 0000008004243710 rbp 0000008004243720 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000023
+rsp 0000008004243500 rbp 0000008004243510 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 000000000000002c
+rsp 00000080042432f0 rbp 0000008004243300 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000035
+rsp 00000080042430e0 rbp 00000080042430f0 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 000000000000003e
+rsp 0000008004242ed0 rbp 0000008004242ee0 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000007
+rsp 0000008004242cc0 rbp 0000008004242cd0 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000010
+rsp 0000008004242ab0 rbp 0000008004242ac0 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000019
+rsp 00000080042428a0 rbp 00000080042428b0 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000022
+rsp 0000008004242690 rbp 00000080042426a0 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 000000000000002b
+rsp 0000008004242480 rbp 0000008004242490 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000034
+rsp 0000008004242270 rbp 0000008004242280 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 000000000000003d
+rsp 0000008004242060 rbp 0000008004242070 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000006
+rsp 0000008004241e50 rbp 0000008004241e60 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 000000000000000f
+rsp 0000008004241c40 rbp 0000008004241c50 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000018
+rsp 0000008004241a30 rbp 0000008004241a40 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000021
+rsp 0000008004241820 rbp 0000008004241830 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 000000000000002a
+rsp 0000008004241610 rbp 0000008004241620 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000033
+rsp 0000008004241400 rbp 0000008004241410 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 000000000000003c
+rsp 00000080042411f0 rbp 0000008004241200 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000005
+rsp 0000008004240fe0 rbp 0000008004240ff0 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 000000000000000e
+rsp 0000008004240dd0 rbp 0000008004240de0 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000017
+rsp 0000008004240bc0 rbp 0000008004240bd0 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000020
+rsp 00000080042409b0 rbp 00000080042409c0 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000029
+rsp 00000080042407a0 rbp 00000080042407b0 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000032
+rsp 0000008004240590 rbp 00000080042405a0 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 000000000000003b
+rsp 0000008004240380 rbp 0000008004240390 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000004
+rsp 0000008004240170 rbp 0000008004240180 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 000000000000000d
+rsp 000000800423ff60 rbp 000000800423ff70 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000016
+rsp 000000800423fd50 rbp 000000800423fd60 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 000000000000001f
+rsp 000000800423fb40 rbp 000000800423fb50 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000028
+rsp 000000800423f930 rbp 000000800423f940 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000031
+rsp 000000800423f720 rbp 000000800423f730 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 000000000000003a
+rsp 000000800423f510 rbp 000000800423f520 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000003
+rsp 000000800423f300 rbp 000000800423f310 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 000000000000000c
+rsp 000000800423f0f0 rbp 000000800423f100 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000015
+rsp 000000800423eee0 rbp 000000800423eef0 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 000000000000001e
+rsp 000000800423ecd0 rbp 000000800423ece0 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000027
+rsp 000000800423eac0 rbp 000000800423ead0 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000030
+rsp 000000800423e8b0 rbp 000000800423e8c0 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000039
+rsp 000000800423e6a0 rbp 000000800423e6b0 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000002
+rsp 000000800423e490 rbp 000000800423e4a0 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 000000000000000b
+rsp 000000800423e280 rbp 000000800423e290 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000014
+rsp 000000800423e070 rbp 000000800423e080 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 000000000000001d
+rsp 000000800423de60 rbp 000000800423de70 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000026
+rsp 000000800423dc50 rbp 000000800423dc60 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 000000000000002f
+rsp 000000800423da40 rbp 000000800423da50 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000038
+rsp 000000800423d830 rbp 000000800423d840 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000001
+rsp 000000800423d620 rbp 000000800423d630 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 000000000000000a
+rsp 000000800423d410 rbp 000000800423d420 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000013
+rsp 000000800423d200 rbp 000000800423d210 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 000000000000001c
+rsp 000000800423cff0 rbp 000000800423d000 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000025
+rsp 000000800423cde0 rbp 000000800423cdf0 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 000000000000002e
+rsp 000000800423cbd0 rbp 000000800423cbe0 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000037
+rsp 000000800423c9c0 rbp 000000800423c9d0 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000000
+rsp 000000800423c7b0 rbp 000000800423c7c0 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000009
+rsp 000000800423c5a0 rbp 000000800423c5b0 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
+Interrupt 0x0d (#GP General Protection Exception) at rip=800421ed01
+ cr2=0000000000000000 error=               0
+rax cccccccccccccccc rbx 0000000000000000 rcx 00000080042263a0 rdx 0000000000000012
+rsp 000000800423c390 rbp 000000800423c3a0 rsi 000000000000000a rdi cccccccccccccccc
+rip 000000800421ed01 r8 00000080042175c0  r9 000000800421ab14 r10 0000000000000000
+r11 0000000000000000 r12 0000000000000000 r13 0000000000000000 r14 0000000000000000
+r15 0000000000000000 rflags 00000086
+es: 0010 ds: 0010 cs: 0008 ss: 0010
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
@@ -1227,8 +1855,8 @@ Executing 'priority-donate-sema':
 (priority-donate-sema) Main thread finished.
 (priority-donate-sema) end
 Execution of 'priority-donate-sema' complete.
-Timer: 53 ticks
-Thread: 0 idle ticks, 53 kernel ticks, 0 user ticks
+Timer: 54 ticks
+Thread: 1 idle ticks, 53 kernel ticks, 0 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 9 reads, 18 writes
 hd1:1: 0 reads, 0 writes
@@ -1297,7 +1925,7 @@ Executing 'priority-donate-lower':
 (priority-donate-lower) end
 Execution of 'priority-donate-lower' complete.
 Timer: 55 ticks
-Thread: 0 idle ticks, 55 kernel ticks, 0 user ticks
+Thread: 1 idle ticks, 54 kernel ticks, 0 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 9 reads, 18 writes
 hd1:1: 0 reads, 0 writes
@@ -1365,7 +1993,7 @@ Executing 'pt-grow-stk-sc':
 (pt-grow-stk-sc) read "sample.txt"
 pt-grow-stk-sc: exit(-1)
 Execution of 'pt-grow-stk-sc' complete.
-Timer: 67 ticks
+Timer: 66 ticks
 Thread: 5 idle ticks, 56 kernel ticks, 6 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 120 reads, 252 writes
@@ -1402,7 +2030,8 @@ iPXE (http://ipxe.org) 00:03.0 C980 PCI2.10 PnP PMM+013915A0+012F15A0 C980
 Press Ctrl-B to configure iPXE (PCI 00:03.0)...                                                                               
 
 
-Booting from Hard Disk..Kernel command line: -q -f put pt-big-stk-obj run pt-big-stk-obj
+Booting from Hard Disk...
+Kernel command line: -q -f put pt-big-stk-obj run pt-big-stk-obj
 0 ~ 9fc00 1
 100000 ~ 13e0000 1
 Pintos booting with: 
@@ -1421,7 +2050,7 @@ Executing 'pt-big-stk-obj':
 pt-big-stk-obj: exit(-1)
 Execution of 'pt-big-stk-obj' complete.
 Timer: 63 ticks
-Thread: 3 idle ticks, 58 kernel ticks, 2 user ticks
+Thread: 7 idle ticks, 55 kernel ticks, 1 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 83 reads, 250 writes
 hd1:0: 111 reads, 0 writes
@@ -1490,10 +2119,10 @@ child-sort: exit(-1)
 (page-merge-par) wait for child 0: FAILED
 page-merge-par: exit(1)
 Execution of 'page-merge-par' complete.
-Timer: 343 ticks
-Thread: 70 idle ticks, 80 kernel ticks, 193 user ticks
+Timer: 338 ticks
+Thread: 57 idle ticks, 76 kernel ticks, 205 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 391 reads, 4654 writes
+hd0:1: 392 reads, 4654 writes
 hd1:0: 212 reads, 0 writes
 hd1:1: 0 reads, 0 writes
 Console: 1727 characters output
@@ -1516,8 +2145,7 @@ iPXE (http://ipxe.org) 00:03.0 C980 PCI2.10 PnP PMM+013915A0+012F15A0 C980
 Press Ctrl-B to configure iPXE (PCI 00:03.0)...                                                                               
 
 
-Booting from Hard Disk...
-Kernel command line: -q -f put page-merge-mm put child-qsort-mm run page-merge-mm
+Booting from Hard Disk..Kernel command line: -q -f put page-merge-mm put child-qsort-mm run page-merge-mm
 0 ~ 9fc00 1
 100000 ~ 13e0000 1
 Pintos booting with: 
@@ -1561,8 +2189,8 @@ child-qsort-mm: exit(-1)
 (page-merge-mm) wait for child 0: FAILED
 page-merge-mm: exit(1)
 Execution of 'page-merge-mm' complete.
-Timer: 326 ticks
-Thread: 44 idle ticks, 81 kernel ticks, 201 user ticks
+Timer: 335 ticks
+Thread: 58 idle ticks, 81 kernel ticks, 196 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 391 reads, 4666 writes
 hd1:0: 218 reads, 0 writes
@@ -1587,7 +2215,8 @@ iPXE (http://ipxe.org) 00:03.0 C980 PCI2.10 PnP PMM+013915A0+012F15A0 C980
 Press Ctrl-B to configure iPXE (PCI 00:03.0)...                                                                               
 
 
-Booting from Hard Disk..Kernel command line: -q -f put page-merge-stk put child-qsort run page-merge-stk
+Booting from Hard Disk...
+Kernel command line: -q -f put page-merge-stk put child-qsort run page-merge-stk
 0 ~ 9fc00 1
 100000 ~ 13e0000 1
 Pintos booting with: 
@@ -1631,8 +2260,8 @@ child-qsort: exit(-1)
 (page-merge-stk) wait for child 0: FAILED
 page-merge-stk: exit(1)
 Execution of 'page-merge-stk' complete.
-Timer: 332 ticks
-Thread: 52 idle ticks, 79 kernel ticks, 202 user ticks
+Timer: 356 ticks
+Thread: 56 idle ticks, 81 kernel ticks, 219 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 391 reads, 4666 writes
 hd1:0: 218 reads, 0 writes
@@ -1644,238 +2273,15 @@ Powering off...
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
-DETAILS OF tests/vm/mmap-write FAILURE:
-
-run: compare read data against written data: FAILED
-
-OUTPUT FROM tests/vm/mmap-write:
-
-c[?7l[2J[0mSeaBIOS (version rel-1.11.0-0-g63451fca13-prebuilt.qemu-project.org)
-
-
-iPXE (http://ipxe.org) 00:03.0 C980 PCI2.10 PnP PMM+013915A0+012F15A0 C980
-Press Ctrl-B to configure iPXE (PCI 00:03.0)...                                                                               
-
-
-Booting from Hard Disk..Kernel command line: -q -f put mmap-write run mmap-write
-0 ~ 9fc00 1
-100000 ~ 13e0000 1
-Pintos booting with: 
-	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
-	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
-Calibrating timer...  104,755,200 loops/s.
-hd0:0: detected 321 sector (160 kB) disk, model "QEMU HARDDISK", serial "QM00001"
-hd0:1: detected 20,160 sector (9 MB) disk, model "QEMU HARDDISK", serial "QM00002"
-hd1:0: detected 104 sector (52 kB) disk, model "QEMU HARDDISK", serial "QM00003"
-hd1:1: detected 8,064 sector (3 MB) disk, model "QEMU HARDDISK", serial "QM00004"
-Formatting file system...done.
-Boot complete.
-Putting 'mmap-write' into the file system...
-Executing 'mmap-write':
-(mmap-write) begin
-(mmap-write) create "sample.txt"
-(mmap-write) open "sample.txt"
-(mmap-write) mmap "sample.txt"
-(mmap-write) compare read data against written data
-(mmap-write) compare read data against written data: FAILED
-mmap-write: exit(1)
-Execution of 'mmap-write' complete.
-Timer: 65 ticks
-Thread: 8 idle ticks, 54 kernel ticks, 4 user ticks
-hd0:0: 0 reads, 0 writes
-hd0:1: 119 reads, 250 writes
-hd1:0: 104 reads, 0 writes
-hd1:1: 0 reads, 0 writes
-Console: 1145 characters output
-Keyboard: 0 keys pressed
-Exception: 0 page faults
-Powering off...
-
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-
-DETAILS OF tests/vm/mmap-unmap FAILURE:
-
-run: unmapped memory is readable (0): FAILED
-
-OUTPUT FROM tests/vm/mmap-unmap:
-
-c[?7l[2J[0mSeaBIOS (version rel-1.11.0-0-g63451fca13-prebuilt.qemu-project.org)
-
-
-iPXE (http://ipxe.org) 00:03.0 C980 PCI2.10 PnP PMM+013915A0+012F15A0 C980
-Press Ctrl-B to configure iPXE (PCI 00:03.0)...                                                                               
-
-
-Booting from Hard Disk...
-Kernel command line: -q -f put mmap-unmap put sample.txt run mmap-unmap
-0 ~ 9fc00 1
-100000 ~ 13e0000 1
-Pintos booting with: 
-	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
-	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
-Calibrating timer...  104,755,200 loops/s.
-hd0:0: detected 321 sector (160 kB) disk, model "QEMU HARDDISK", serial "QM00001"
-hd0:1: detected 20,160 sector (9 MB) disk, model "QEMU HARDDISK", serial "QM00002"
-hd1:0: detected 106 sector (53 kB) disk, model "QEMU HARDDISK", serial "QM00003"
-hd1:1: detected 8,064 sector (3 MB) disk, model "QEMU HARDDISK", serial "QM00004"
-Formatting file system...done.
-Boot complete.
-Putting 'mmap-unmap' into the file system...
-Putting 'sample.txt' into the file system...
-Executing 'mmap-unmap':
-(mmap-unmap) begin
-(mmap-unmap) open "sample.txt"
-(mmap-unmap) mmap "sample.txt"
-(mmap-unmap) memory is readable 540884285
-(mmap-unmap) memory is readable 540888381
-(mmap-unmap) unmapped memory is readable (0): FAILED
-mmap-unmap: exit(1)
-Execution of 'mmap-unmap' complete.
-Timer: 65 ticks
-Thread: 3 idle ticks, 57 kernel ticks, 5 user ticks
-hd0:0: 0 reads, 0 writes
-hd0:1: 120 reads, 250 writes
-hd1:0: 106 reads, 0 writes
-hd1:1: 0 reads, 0 writes
-Console: 1197 characters output
-Keyboard: 0 keys pressed
-Exception: 0 page faults
-Powering off...
-
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-
-DETAILS OF tests/vm/mmap-exit FAILURE:
-
-run: 512 bytes read starting at offset 0 in "sample.txt" differ from expected: FAILED
-
-OUTPUT FROM tests/vm/mmap-exit:
-
-c[?7l[2J[0mSeaBIOS (version rel-1.11.0-0-g63451fca13-prebuilt.qemu-project.org)
-
-
-iPXE (http://ipxe.org) 00:03.0 C980 PCI2.10 PnP PMM+013915A0+012F15A0 C980
-Press Ctrl-B to configure iPXE (PCI 00:03.0)...                                                                               
-
-
-Booting from Hard Disk..Kernel command line: -q -f put mmap-exit put child-mm-wrt run mmap-exit
-0 ~ 9fc00 1
-100000 ~ 13e0000 1
-Pintos booting with: 
-	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
-	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
-Calibrating timer...  104,755,200 loops/s.
-hd0:0: detected 321 sector (160 kB) disk, model "QEMU HARDDISK", serial "QM00001"
-hd0:1: detected 20,160 sector (9 MB) disk, model "QEMU HARDDISK", serial "QM00002"
-hd1:0: detected 206 sector (103 kB) disk, model "QEMU HARDDISK", serial "QM00003"
-hd1:1: detected 8,064 sector (3 MB) disk, model "QEMU HARDDISK", serial "QM00004"
-Formatting file system...done.
-Boot complete.
-Putting 'mmap-exit' into the file system...
-Putting 'child-mm-wrt' into the file system...
-Executing 'mmap-exit':
-(mmap-exit) begin
-(child-mm-wrt) begin
-(child-mm-wrt) create "sample.txt"
-(child-mm-wrt) open "sample.txt"
-(child-mm-wrt) mmap "sample.txt"
-(child-mm-wrt) end
-child-mm-wrt: exit(0)
-(mmap-exit) open "sample.txt" for verification
-(mmap-exit) 512 bytes read starting at offset 0 in "sample.txt" differ from expected.
-(mmap-exit) Showing first differing 64 bytes.
-(mmap-exit) Data actually read:
-0000000000000000  00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 |................|
-0000000000000010  00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 |................|
-0000000000000020  00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 |................|
-0000000000000030  00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 |................|
-(mmap-exit) Expected data:
-0000000000000000  3d 3d 3d 20 20 41 4c 4c-20 55 53 45 52 53 20 50 |===  ALL USERS P|
-0000000000000010  4c 45 41 53 45 20 4e 4f-54 45 20 20 3d 3d 3d 3d |LEASE NOTE  ====|
-0000000000000020  3d 3d 3d 3d 3d 3d 3d 3d-3d 3d 3d 3d 3d 3d 3d 3d |================|
-0000000000000030  3d 3d 3d 3d 0a 0a 43 41-52 20 61 6e 64 20 43 44 |====..CAR and CD|
-(mmap-exit) 512 bytes read starting at offset 0 in "sample.txt" differ from expected: FAILED
-mmap-exit: exit(1)
-Execution of 'mmap-exit' complete.
-Timer: 83 ticks
-Thread: 10 idle ticks, 58 kernel ticks, 15 user ticks
-hd0:0: 0 reads, 0 writes
-hd0:1: 204 reads, 464 writes
-hd1:0: 206 reads, 0 writes
-hd1:1: 0 reads, 0 writes
-Console: 2172 characters output
-Keyboard: 0 keys pressed
-Exception: 0 page faults
-Powering off...
-
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-
-DETAILS OF tests/vm/mmap-off FAILURE:
-
-run: validate fail.: FAILED
-
-OUTPUT FROM tests/vm/mmap-off:
-
-c[?7l[2J[0mSeaBIOS (version rel-1.11.0-0-g63451fca13-prebuilt.qemu-project.org)
-
-
-iPXE (http://ipxe.org) 00:03.0 C980 PCI2.10 PnP PMM+013915A0+012F15A0 C980
-Press Ctrl-B to configure iPXE (PCI 00:03.0)...                                                                               
-
-
-Booting from Hard Disk..Kernel command line: -q -f put mmap-off put large.txt run mmap-off
-0 ~ 9fc00 1
-100000 ~ 13e0000 1
-Pintos booting with: 
-	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
-	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
-Calibrating timer...  104,755,200 loops/s.
-hd0:0: detected 321 sector (160 kB) disk, model "QEMU HARDDISK", serial "QM00001"
-hd0:1: detected 20,160 sector (9 MB) disk, model "QEMU HARDDISK", serial "QM00002"
-hd1:0: detected 7,930 sector (3 MB) disk, model "QEMU HARDDISK", serial "QM00003"
-hd1:1: detected 8,064 sector (3 MB) disk, model "QEMU HARDDISK", serial "QM00004"
-Formatting file system...done.
-Boot complete.
-Putting 'mmap-off' into the file system...
-Putting 'large.txt' into the file system...
-Executing 'mmap-off':
-(mmap-off) begin
-(mmap-off) open "large.txt"
-(mmap-off) try to mmap with offset 0x1000
-(mmap-off) validate mmap.
-(mmap-off) validated.
-(mmap-off) write to mmap
-(mmap-off) validate contents.
-(mmap-off) open "large.txt"
-(mmap-off) read "large.txt" Page 0
-(mmap-off) validate page 0.
-(mmap-off) validated.
-(mmap-off) read "large.txt" Page 1
-(mmap-off) validate page 1.
-(mmap-off) validate fail.: FAILED
-mmap-off: exit(1)
-Execution of 'mmap-off' complete.
-Timer: 501 ticks
-Thread: 214 idle ticks, 279 kernel ticks, 9 user ticks
-hd0:0: 0 reads, 0 writes
-hd0:1: 172 reads, 15898 writes
-hd1:0: 7930 reads, 0 writes
-hd1:1: 0 reads, 0 writes
-Console: 1373 characters output
-Keyboard: 0 keys pressed
-Exception: 0 page faults
-Powering off...
-
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-
 DETAILS OF tests/vm/swap-anon FAILURE:
 
-Kernel panic in run: PANIC at ../../vm/vm.c:173 in vm_get_frame(): todo
-Call stack: 0x800421769b 0x800421ffec 0x8004220406 0x8004220342 0x800421c5ea 0x8004208a3d 0x8004208e5b 0x400cac 0x400cf5
+Kernel panic in run: PANIC at ../../vm/vm.c:175 in vm_get_frame(): todo
+Call stack: 0x800421769b 0x80042200bc 0x80042204d6 0x8004220412 0x800421c5ea 0x8004208a3d 0x8004208e5b 0x400cac 0x400cf5
 Translation of call stack:
 0x000000800421769b: debug_panic (lib/kernel/debug.c:32)
-0x000000800421ffec: vm_get_frame (vm/vm.c:176)
-0x0000008004220406: vm_do_claim_page (vm/vm.c:290)
-0x0000008004220342: vm_try_handle_fault (vm/vm.c:262)
+0x00000080042200bc: vm_get_frame (vm/vm.c:178)
+0x00000080042204d6: vm_do_claim_page (vm/vm.c:292)
+0x0000008004220412: vm_try_handle_fault (vm/vm.c:264)
 0x000000800421c5ea: page_fault (userprog/exception.c:159)
 0x0000008004208a3d: intr_handler (threads/interrupt.c:352)
 0x0000008004208e5b: intr_entry (threads/intr-stubs.o:?)
@@ -1891,7 +2297,8 @@ iPXE (http://ipxe.org) 00:03.0 C980 PCI2.10 PnP PMM+009915A0+008F15A0 C980
 Press Ctrl-B to configure iPXE (PCI 00:03.0)...                                                                               
 
 
-Booting from Hard Disk..Kernel command line: -q -f put swap-anon run swap-anon
+Booting from Hard Disk...
+Kernel command line: -q -f put swap-anon run swap-anon
 0 ~ 9fc00 1
 100000 ~ 9e0000 1
 Pintos booting with: 
@@ -1910,8 +2317,8 @@ Executing 'swap-anon':
 (swap-anon) write sparsely over page 0
 (swap-anon) write sparsely over page 512
 (swap-anon) write sparsely over page 1024
-Kernel PANIC at ../../vm/vm.c:173 in vm_get_frame(): todo
-Call stack: 0x800421769b 0x800421ffec 0x8004220406 0x8004220342 0x800421c5ea 0x8004208a3d 0x8004208e5b 0x400cac 0x400cf5 0Interrupt 0x0d (#GP General Protection Exception) at rip=80042146d5
+Kernel PANIC at ../../vm/vm.c:175 in vm_get_frame(): todo
+Call stack: 0x800421769b 0x80042200bc 0x80042204d6 0x8004220412 0x800421c5ea 0x8004208a3d 0x8004208e5b 0x400cac 0x400cf5 0Interrupt 0x0d (#GP General Protection Exception) at rip=80042146d5
  cr2=0000000000abbbc0 error=               0
 rax 0000800423b51800 rbx 0000800423c07800 rcx 00000080040b8000 rdx 00000000000003d4
 rsp 000000800423bd90 rbp 000000800423bda0 rsi 000000000000aa0f rdi 0000000000000000
@@ -1920,8 +2327,8 @@ r11 0000000000000202 r12 0000800423cf1800 r13 0000800420a0a200 r14 0000800423bf1
 r15 0000010000000000 rflags 00000006
 es: 0010 ds: 0010 cs: 0008 ss: 0010
 Kernel PANIC recursion at ../../userprog/exception.c:97 in kill().
-Timer: 489 ticks
-Thread: 5 idle ticks, 56 kernel ticks, 428 user ticks
+Timer: 510 ticks
+Thread: 5 idle ticks, 56 kernel ticks, 449 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 79 reads, 230 writes
 hd1:0: 101 reads, 0 writes
@@ -1932,13 +2339,13 @@ Key
 
 DETAILS OF tests/vm/swap-iter FAILURE:
 
-Kernel panic in run: PANIC at ../../vm/vm.c:173 in vm_get_frame(): todo
-Call stack: 0x800421769b 0x800421ffec 0x8004220406 0x8004220342 0x800421c5ea 0x8004208a3d 0x8004208e5b 0x400e2e 0x400e77
+Kernel panic in run: PANIC at ../../vm/vm.c:175 in vm_get_frame(): todo
+Call stack: 0x800421769b 0x80042200bc 0x80042204d6 0x8004220412 0x800421c5ea 0x8004208a3d 0x8004208e5b 0x400e2e 0x400e77
 Translation of call stack:
 0x000000800421769b: debug_panic (lib/kernel/debug.c:32)
-0x000000800421ffec: vm_get_frame (vm/vm.c:176)
-0x0000008004220406: vm_do_claim_page (vm/vm.c:290)
-0x0000008004220342: vm_try_handle_fault (vm/vm.c:262)
+0x00000080042200bc: vm_get_frame (vm/vm.c:178)
+0x00000080042204d6: vm_do_claim_page (vm/vm.c:292)
+0x0000008004220412: vm_try_handle_fault (vm/vm.c:264)
 0x000000800421c5ea: page_fault (userprog/exception.c:159)
 0x0000008004208a3d: intr_handler (threads/interrupt.c:352)
 0x0000008004208e5b: intr_entry (threads/intr-stubs.o:?)
@@ -1960,7 +2367,7 @@ Booting from Hard Disk..Kernel command line: -q -f put swap-iter put large.txt r
 Pintos booting with: 
 	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
 	ext_mem: 0x100000 ~ 0x9e0000 (Usable: 9,088 kB)
-Calibrating timer...  104,755,200 loops/s.
+Calibrating timer...  78,540,800 loops/s.
 hd0:0: detected 321 sector (160 kB) disk, model "QEMU HARDDISK", serial "QM00001"
 hd0:1: detected 20,160 sector (9 MB) disk, model "QEMU HARDDISK", serial "QM00002"
 hd1:0: detected 7,929 sector (3 MB) disk, model "QEMU HARDDISK", serial "QM00003"
@@ -1974,8 +2381,8 @@ Executing 'swap-iter':
 (swap-iter) write sparsely over page 0
 (swap-iter) write sparsely over page 512
 (swap-iter) write sparsely over page 1024
-Kernel PANIC at ../../vm/vm.c:173 in vm_get_frame(): todo
-Call stack: 0x800421769b 0x800421ffec 0x8004220406 0x8004220342 0x800421c5ea 0x8004208a3d 0x8004208e5b 0x400e2e 0x400e77 0Interrupt 0x0d (#GP General Protection Exception) at rip=80042146d5
+Kernel PANIC at ../../vm/vm.c:175 in vm_get_frame(): todo
+Call stack: 0x800421769b 0x80042200bc 0x80042204d6 0x8004220412 0x800421c5ea 0x8004208a3d 0x8004208e5b 0x400e2e 0x400e77 0Interrupt 0x0d (#GP General Protection Exception) at rip=80042146d5
  cr2=0000000000ca4de0 error=               0
 rax 0000800423b51800 rbx 0000800423c07800 rcx 00000080040b8000 rdx 00000000000003d4
 rsp 000000800423bd90 rbp 000000800423bda0 rsi 000000000000aa0f rdi 0000000000000000
@@ -1984,100 +2391,14 @@ r11 0000000000000206 r12 0000800423cf1800 r13 0000800420a0a200 r14 0000800423bf1
 r15 0000010000000000 rflags 00000006
 es: 0010 ds: 0010 cs: 0008 ss: 0010
 Kernel PANIC recursion at ../../userprog/exception.c:97 in kill().
-Timer: 998 ticks
-Thread: 233 idle ticks, 263 kernel ticks, 502 user ticks
+Timer: 1051 ticks
+Thread: 261 idle ticks, 267 kernel ticks, 523 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 114 reads, 15896 writes
 hd1:0: 7929 reads, 0 writes
 hd1:1: 0 reads, 0 writes
 Console: 1835 characters output
 Key
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-
-DETAILS OF tests/vm/mmap-bad-off FAILURE:
-
-run: try to mmap invalid offset: FAILED
-
-OUTPUT FROM tests/vm/mmap-bad-off:
-
-c[?7l[2J[0mSeaBIOS (version rel-1.11.0-0-g63451fca13-prebuilt.qemu-project.org)
-
-
-iPXE (http://ipxe.org) 00:03.0 C980 PCI2.10 PnP PMM+013915A0+012F15A0 C980
-Press Ctrl-B to configure iPXE (PCI 00:03.0)...                                                                               
-
-
-Booting from Hard Disk..Kernel command line: -q -f put mmap-bad-off put large.txt run mmap-bad-off
-0 ~ 9fc00 1
-100000 ~ 13e0000 1
-Pintos booting with: 
-	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
-	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
-Calibrating timer...  104,755,200 loops/s.
-hd0:0: detected 321 sector (160 kB) disk, model "QEMU HARDDISK", serial "QM00001"
-hd0:1: detected 20,160 sector (9 MB) disk, model "QEMU HARDDISK", serial "QM00002"
-hd1:0: detected 4,014 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00003"
-hd1:1: detected 8,064 sector (3 MB) disk, model "QEMU HARDDISK", serial "QM00004"
-Formatting file system...done.
-Boot complete.
-Putting 'mmap-bad-off' into the file system...
-Putting 'large.txt' into the file system...
-Executing 'mmap-bad-off':
-(mmap-bad-off) begin
-(mmap-bad-off) open "large.txt"
-(mmap-bad-off) try to mmap invalid offset
-(mmap-bad-off) try to mmap invalid offset: FAILED
-mmap-bad-off: exit(1)
-Execution of 'mmap-bad-off' complete.
-Timer: 282 ticks
-Thread: 121 idle ticks, 158 kernel ticks, 3 user ticks
-hd0:0: 0 reads, 0 writes
-hd0:1: 110 reads, 8066 writes
-hd1:0: 4014 reads, 0 writes
-hd1:1: 0 reads, 0 writes
-Console: 1141 characters output
-Keyboard: 0 keys pressed
-Exception: 0 page faults
-Powering off...
-
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-
-DETAILS OF tests/vm/mmap-kernel FAILURE:
-
-run: TIMEOUT
-
-OUTPUT FROM tests/vm/mmap-kernel:
-
-c[?7l[2J[0mSeaBIOS (version rel-1.11.0-0-g63451fca13-prebuilt.qemu-project.org)
-
-
-iPXE (http://ipxe.org) 00:03.0 C980 PCI2.10 PnP PMM+013915A0+012F15A0 C980
-Press Ctrl-B to configure iPXE (PCI 00:03.0)...                                                                               
-
-
-Booting from Hard Disk...
-Kernel command line: -q -f put mmap-kernel put sample.txt run mmap-kernel
-0 ~ 9fc00 1
-100000 ~ 13e0000 1
-Pintos booting with: 
-	base_mem: 0x0 ~ 0x9fc00 (Usable: 639 kB)
-	ext_mem: 0x100000 ~ 0x13e0000 (Usable: 19,328 kB)
-Calibrating timer...  104,755,200 loops/s.
-hd0:0: detected 321 sector (160 kB) disk, model "QEMU HARDDISK", serial "QM00001"
-hd0:1: detected 20,160 sector (9 MB) disk, model "QEMU HARDDISK", serial "QM00002"
-hd1:0: detected 104 sector (52 kB) disk, model "QEMU HARDDISK", serial "QM00003"
-hd1:1: detected 8,064 sector (3 MB) disk, model "QEMU HARDDISK", serial "QM00004"
-Formatting file system...done.
-Boot complete.
-Putting 'mmap-kernel' into the file system...
-Putting 'sample.txt' into the file system...
-Executing 'mmap-kernel':
-(mmap-kernel) begin
-(mmap-kernel) open "sample.txt"
-(mmap-kernel) try to mmap over kernel 0
-(mmap-kernel) try to mmap over kernel 1
-(mmap-kernel) try to mmap over kernel 2
-TIMEOUT
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 DETAILS OF tests/vm/cow/cow-simple FAILURE:
@@ -2119,8 +2440,8 @@ child: exit(1)
 (cow-simple) end
 cow-simple: exit(0)
 Execution of 'cow-simple' complete.
-Timer: 300 ticks
-Thread: 122 idle ticks, 164 kernel ticks, 14 user ticks
+Timer: 299 ticks
+Thread: 132 idle ticks, 151 kernel ticks, 16 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 97 reads, 8060 writes
 hd1:0: 4016 reads, 0 writes
