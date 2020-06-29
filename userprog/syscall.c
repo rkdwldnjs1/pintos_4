@@ -210,6 +210,15 @@ write (int fd, const void *buffer, unsigned size){
     struct file * _file;
     _file = thread_current() -> files[fd];
 
+    struct page *page = spt_find_page(&thread_current() -> spt, buffer);
+    if (page == NULL) {
+        exit(-1);
+    }
+    //else if (!page -> writable) {
+    //    exit(-1);
+    //}
+
+
     if (fd == 1){ //stdout
         putbuf(buffer, size);
         return size;
@@ -221,7 +230,6 @@ write (int fd, const void *buffer, unsigned size){
         } else if(_file -> deny_write == true) {
             return 0;
         }
-        //printf("1\n");
         return file_write(_file, buffer, size); //아직 file 확장은 구현안됨
     }
     else{
@@ -230,14 +238,24 @@ write (int fd, const void *buffer, unsigned size){
     
 }
 
+
 int 
 read (int fd, void *buffer, unsigned size){
     check_arg(buffer);
     check_arg(buffer+size-1);
 
     struct page *page = spt_find_page(&thread_current() -> spt, buffer);
-    if (!page -> writable) {
+    /*
+    if (page == NULL) {
+        //exit(-1);
+    }
+    */
+    if (page != NULL && !page -> writable) {
         exit(-1);
+    }
+    
+    if (page == NULL){
+        //printf("1\n");
     }
     struct file * _file;
     _file = thread_current() -> files[fd];
@@ -287,9 +305,7 @@ open (const char *file){
 
     _file = filesys_open(file);
 
-    //printf("!!!!\n");
     if (_file == NULL){
-        //printf("1\n");
         return -1;
     }
     else{

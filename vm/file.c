@@ -38,12 +38,34 @@ file_map_initializer (struct page *page, enum vm_type type, void *kva) {
 static bool
 file_map_swap_in (struct page *page, void *kva) {
 	struct file_page *file_page UNUSED = &page->file;
+
+    page -> swapped_out = false;
+
+    file_read_at(page->file_to_write, kva, page->byte_to_write, page->offset);
+
+    return true;
 }
 
 /* Swap out the page by writeback contents to the file. */
 static bool
 file_map_swap_out (struct page *page) {
 	struct file_page *file_page UNUSED = &page->file;
+    struct thread *current = thread_current();
+
+
+        if (pml4_is_dirty(current -> pml4, page -> va)){ // 도대체 dirty bit은 어디서 설정해주지?
+            
+            if (page -> writable){ 
+            
+                file_write_at(page -> file_to_write, page->va, page -> byte_to_write, page -> offset);
+                pml4_set_dirty(current->pml4, page->va, false);
+            }
+        }
+
+        page -> swapped_out = true;
+
+    return true;
+        //file_close(page->file_to_write);
 }
 
 /* Destory the file mapped page. PAGE will be freed by the caller. */
@@ -66,7 +88,10 @@ file_map_destroy (struct page *page) {
 
         file_close(page->file_to_write);
 
-        free(page -> frame);
+        if (!page -> swapped_out){
+            free(page -> frame);
+        }
+		
         free(page -> info);
     
 }
@@ -142,8 +167,7 @@ do_mmap (void *addr, size_t length, int writable,
         info->ofs = offset;
         info->page_zero_bytes = page_zero_bytes;
 
-		if (!vm_alloc_page_with_initializer (VM_FILE, addr,
-					writable, lazy_load_segment2, info)) //aux에 page_read_bytes, file, writable, page_zero_bytes passing
+		if (!vm_alloc_page_with_initializer (VM_FILE, addr, writable, lazy_load_segment2, info)) //aux에 page_read_bytes, file, writable, page_zero_bytes passing
 			return NULL;
 
         // munmap을 할때를 위한 정보를 저장

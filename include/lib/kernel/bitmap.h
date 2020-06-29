@@ -7,6 +7,13 @@
 
 /* Bitmap abstract data type. */
 
+typedef unsigned long elem_type;
+
+struct bitmap {
+	size_t bit_cnt;     /* Number of bits. */
+	elem_type *bits;    /* Elements that represent bits. */
+};
+
 /* Creation and destruction. */
 struct bitmap *bitmap_create (size_t bit_cnt);
 struct bitmap *bitmap_create_in_buf (size_t bit_cnt, void *, size_t byte_cnt);

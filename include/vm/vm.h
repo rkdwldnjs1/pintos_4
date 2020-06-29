@@ -29,6 +29,7 @@ enum vm_type {
 #include "vm/file.h"
 
 #include "lib/kernel/hash.h"
+#include "lib/kernel/bitmap.h"
 
 struct page_operations;
 struct thread;
@@ -62,6 +63,10 @@ struct page {
     void *unmap_addr;
 	size_t byte_to_write; // lazy_load_segment2에서 설정
 
+    size_t swap_index;
+	bool swapped_out;
+
+
 	/* Per-type data are binded into the union.
 	 * Each function automatically detects the current union */
 	union {
@@ -78,6 +83,12 @@ struct page {
 struct frame {
 	void *kva;
 	struct page *page;
+    int counter; // for 2nd chance
+    struct list_elem list_elem;
+};
+
+struct swap_table {
+	struct bitmap *swap_map;
 };
 
 /* The function table for page operations.
