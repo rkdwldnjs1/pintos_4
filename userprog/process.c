@@ -376,7 +376,7 @@ void
 process_exit (void) {
 	struct thread *curr = thread_current ();
     
-  
+
     supplemental_page_table_kill (&curr->spt);
 
     for(int i=3; i<128; i++){

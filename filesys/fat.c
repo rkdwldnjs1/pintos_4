@@ -6,26 +6,6 @@
 #include <stdio.h>
 #include <string.h>
 
-/* Should be less than DISK_SECTOR_SIZE */
-struct fat_boot {
-	unsigned int magic;
-	unsigned int sectors_per_cluster; /* Fixed to 1 */
-	unsigned int total_sectors;
-	unsigned int fat_start;
-	unsigned int fat_sectors; /* Size of FAT in sectors. */
-	unsigned int root_dir_cluster;
-};
-
-/* FAT FS */
-struct fat_fs {
-	struct fat_boot bs;
-	unsigned int *fat;
-	unsigned int fat_length;
-	disk_sector_t data_start;
-	cluster_t last_clst;
-	struct lock write_lock;
-};
-
 static struct fat_fs *fat_fs;
 
 void fat_boot_create (void);
@@ -152,42 +132,117 @@ fat_boot_create (void) {
 
 void
 fat_fs_init (void) {
-	/* TODO: Your code goes here. */
+	fat_fs->fat_length = data_sectors(fat_fs->bs);
+    fat_fs->data_start = data_start(fat_fs->bs);
 }
 
 /*----------------------------------------------------------------------------*/
 /* FAT handling                                                               */
 /*----------------------------------------------------------------------------*/
 
+
+// Find smallest index in FAT which is empty.
+// Return 0 if FAT is full.
+cluster_t
+find_empty_entry (void) {
+    for(int i=2; i<fat_fs->fat_length; i++){
+        if((fat_fs->fat)[i] == 0){
+            return i;
+        } 
+    }
+
+    return 0;
+    PANIC("Entry is Full");
+    
+}
 /* Add a cluster to the chain.
  * If CLST is 0, start a new chain.
  * Returns 0 if fails to allocate a new cluster. */
 cluster_t
 fat_create_chain (cluster_t clst) {
-	/* TODO: Your code goes here. */
+    cluster_t new_clst = find_empty_entry();
+    	
+	if(new_clst == 0){
+        return new_clst;
+    }
+
+	if (clst == 0){
+        (fat_fs->fat)[new_clst] = EOChain;
+
+        return new_clst;
+    }
+    else{ // clst - c1 - EOChain   ->   clst - new_clst - c1 - EOChain 
+    	//(fat_fs->fat)[cluster] = EOChain;
+		
+		(fat_fs->fat)[new_clst] = (fat_fs -> fat)[clst]; //c1 
+		(fat_fs->fat)[clst] = new_clst;
+
+        return new_clst;
+    }
 }
 
 /* Remove the chain of clusters starting from CLST.
  * If PCLST is 0, assume CLST as the start of the chain. */
 void
 fat_remove_chain (cluster_t clst, cluster_t pclst) {
-	/* TODO: Your code goes here. */
+
+	ASSERT((fat_fs -> fat)[pclst] != clst);
+
+	cluster_t curr;
+	cluster_t next = clst;
+	
+	while((fat_fs -> fat)[next] != EOChain) {
+		curr = next;
+		next = (fat_fs -> fat)[next];
+		(fat_fs -> fat)[curr] = 0;
+	}
+
+	(fat_fs -> fat)[next] = 0;
+	
+	if (pclst != 0) {
+		(fat_fs -> fat)[pclst] = EOChain;
+	}
+
+	/*
+    cluster_t temp;
+	
+    if(pclst == 0){ // pclst 가 0이지만 clst가 chain의 시작점이 아닐 수도 있지 않나? -> 없을 듯. 원래 FAT에서 0번 자리를 비워두는 거 같은 데
+        (fat_fs->fat)[clst] = 0;
+    }
+    else{
+        cluster_t next = (fat_fs->fat)[pclst]; pclst -> clst
+
+        while (next != clst){
+            temp = (fat_fs->fat)[next];
+            (fat_fs->fat)[next] = 0;
+            next = (fat_fs->fat)[temp];
+        }
+        (fat_fs->fat)[clst] = 0;
+
+        (fat_fs->fat)[pclst] = EOChain;
+    }
+	*/
 }
 
 /* Update a value in the FAT table. */
 void
-fat_put (cluster_t clst, cluster_t val) {
-	/* TODO: Your code goes here. */
+fat_put (cluster_t clst, cluster_t val) { //기존의 clst 이후에 존재하는 것들은?
+	(fat_fs->fat)[clst] = val;
 }
 
 /* Fetch a value in the FAT table. */
 cluster_t
 fat_get (cluster_t clst) {
-	/* TODO: Your code goes here. */
+	return (fat_fs->fat)[clst];
 }
 
 /* Covert a cluster # to a sector number. */
 disk_sector_t
 cluster_to_sector (cluster_t clst) {
-	/* TODO: Your code goes here. */
+	return clst + fat_fs->data_start - 1;
+}
+
+cluster_t
+sector_to_cluster (disk_sector_t sec){
+    return sec - fat_fs->data_start;
 }

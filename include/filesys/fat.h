@@ -7,6 +7,7 @@
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
+#include "threads/synch.h"
 
 typedef uint32_t cluster_t;  /* Index of a cluster within FAT. */
 
@@ -17,6 +18,28 @@ typedef uint32_t cluster_t;  /* Index of a cluster within FAT. */
 #define SECTORS_PER_CLUSTER 1 /* Number of sectors per cluster */
 #define FAT_BOOT_SECTOR 0     /* FAT boot sector. */
 #define ROOT_DIR_CLUSTER 1    /* Cluster for the root directory */
+
+
+/* Should be less than DISK_SECTOR_SIZE */
+struct fat_boot {
+	unsigned int magic;
+	unsigned int sectors_per_cluster; /* Fixed to 1 */
+	unsigned int total_sectors;
+	unsigned int fat_start;
+	unsigned int fat_sectors; /* Size of FAT in sectors. */
+	unsigned int root_dir_cluster;
+};
+
+/* FAT FS */
+struct fat_fs {
+	struct fat_boot bs;
+	unsigned int *fat;
+	unsigned int fat_length;
+	disk_sector_t data_start;
+	cluster_t last_clst;
+	struct lock write_lock;
+};
+
 
 void fat_init (void);
 void fat_open (void);
@@ -34,5 +57,9 @@ void fat_remove_chain (
 cluster_t fat_get (cluster_t clst);
 void fat_put (cluster_t clst, cluster_t val);
 disk_sector_t cluster_to_sector (cluster_t clst);
+cluster_t sector_to_cluster (disk_sector_t sec);
+
+#define data_start(FATBS) (1+ ((FATBS).fat_sectors))
+#define data_sectors(FATBS) (((FATBS).total_sectors) - (data_start(FATBS)))
 
 #endif /* filesys/fat.h */

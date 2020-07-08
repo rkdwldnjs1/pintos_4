@@ -69,7 +69,6 @@ file_map_swap_out (struct page *page) {
 }
 
 /* Destory the file mapped page. PAGE will be freed by the caller. */
-/* Destory the file mapped page. PAGE will be freed by the caller. */
 static void
 file_map_destroy (struct page *page) {
 	struct file_page *file_page UNUSED = &page->file;
